@@ -158,5 +158,12 @@ mkdtboimg \
     create "./dtbo.img" --page_size=4096 "${extract_out}/dtbo/"*.dtb
 echo "    + Generated images/dtbo.img"
 
+# Add touch modules to ramdisk for recovery
+echo "Adding touch modules to ramdisk for recovery"
+for module in xiaomi_touch.ko nt36532_touch.ko; do
+	cp ./modules/vendor/$module ./modules/ramdisk/
+	echo $module >> ./modules/ramdisk/modules.load.recovery
+done
+
 rm -rf $extract_out
 echo "Extracted files successfully"
