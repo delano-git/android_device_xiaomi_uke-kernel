@@ -80,10 +80,7 @@
 #define EPOLL_PACKED
 #endif
 
-struct epoll_event {
-	__poll_t events;
-	__u64 data;
-} EPOLL_PACKED;
+#include <bits/epoll_event.h>
 
 #ifdef CONFIG_PM_SLEEP
 static __inline__ void ep_take_care_of_epollwakeup(struct epoll_event *epev)
